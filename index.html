@@ -299,12 +299,15 @@
     <div class="max-w-2xl mx-auto text-center">
       <h2 class="text-2xl md:text-3xl font-bold text-white mb-3">Get our weekly tool picks</h2>
       <p class="text-slate-300 mb-8">New comparisons, reviews, and deals — straight to your inbox. No spam, unsubscribe any time.</p>
-      <!-- Brevo / email embed — replace with actual embed code from Brevo -->
-      <form action="https://app.brevo.com/landing/form/YOUR_FORM_ID" method="POST"
+      <!-- Brevo email capture form (StackPilot Newsletter Signup) -->
+      <form action="https://9194ed45.sibforms.com/serve/MUIFADsJEGOy1b0IdnCHpsoCgsFHQMG2usiXo7brLlnbtCokBu5Fum3Te2a4jBBsD9i4LyijqDDMeiO5w8g98LuGwvb5Xv-vflThXFp7f75TbegsbsiKnawt725Bhk8WGrMzrxBjhoU1qGKUTaLOL7tDZ-Nt5NPCgM0BQnFhRHcDS0kWaQ8xYYRpcnD2T3nYqofGV1Vr1i1ZZGfdGg==" method="POST" target="_blank"
             class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
             onsubmit="handleSignup(event)">
         <input type="email" name="EMAIL" required placeholder="your@email.com"
                class="flex-1 px-4 py-3 rounded-xl text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-brand-light" />
+        <!-- honeypot + Brevo required hidden fields (do not remove) -->
+        <input type="text" name="email_address_check" value="" class="hidden" tabindex="-1" autocomplete="off" />
+        <input type="hidden" name="locale" value="en" />
         <button type="submit"
                 class="bg-brand hover:bg-brand-dark text-white font-semibold px-6 py-3 rounded-xl transition-colors whitespace-nowrap">
           Subscribe free
@@ -337,10 +340,13 @@
 
   <script>
     function handleSignup(e) {
-      // Replace with actual Brevo/Mailchimp form handler
-      e.preventDefault();
+      // Form submits to Brevo in a new tab (target="_blank"); this just gives
+      // the user immediate feedback on the site itself. Double opt-in is on,
+      // so they still need to click the confirmation email.
       const email = e.target.EMAIL.value;
-      alert('Thanks! Check ' + email + ' to confirm your subscription.');
+      window.setTimeout(function () {
+        alert('Almost there! Check ' + email + ' for a confirmation email to complete your subscription.');
+      }, 300);
     }
   </script>
 
