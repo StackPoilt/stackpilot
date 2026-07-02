@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /go/
 
-Sitemap: https://stackpilot.vercel.app/sitemap.xml
+Sitemap: https://stackpilot-s14h.vercel.app/sitemap.xml
